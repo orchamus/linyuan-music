@@ -34,8 +34,9 @@ dataThemeChange(overallStyle.value);
 const { title } = useNav();
 
 const ruleForm = reactive({
-  username: "admin_1",
-  password: "123456abc"
+  // 演示账号：admin / abc12345（正式部署请清空默认值）
+  username: "admin",
+  password: "abc12345"
 });
 
 const onLogin = async (formEl: FormInstance | undefined) => {
