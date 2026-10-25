@@ -9,9 +9,16 @@
   <img src="https://img.shields.io/badge/Redis-7-DC382D?logo=redis&labelColor=555" alt="Redis">
   <img src="https://img.shields.io/badge/Vue-3.5-41B883?logo=vue.js&labelColor=555" alt="Vue 3">
   <img src="https://img.shields.io/badge/license-MIT-blue" alt="MIT">
+  <a href="https://github.com/orchamus/linyuan-music/actions/workflows/ci.yml"><img src="https://github.com/orchamus/linyuan-music/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
 </div>
 
 ---
+
+## 演示
+
+![功能演示](./docs/demo/demo.gif)
+
+> 完整演示视频（约 2.5 分钟，含登录、播放、后台管理）：[docs/demo/demo.mp4](./docs/demo/demo.mp4)
 
 ## 项目简介
 
