@@ -272,7 +272,7 @@ cd linyuan-music-client && pnpm build   # 产物 dist/
 cd linyuan-music-admin  && pnpm build   # 产物 dist/
 ```
 
-详见 [docs/部署.md](./docs/部署.md)。
+详见 [docs/部署.md](./docs/部署.md)，推送 GitHub 见 [docs/推送到GitHub.md](./docs/推送到GitHub.md)。
 
 ## Roadmap
 
