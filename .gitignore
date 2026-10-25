@@ -1,0 +1,30 @@
+# 编辑器 / 系统
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# 后端
+**/target/
+!**/src/main/**/target/
+!**/src/test/**/target/
+*.log
+
+# 前端
+**/node_modules/
+**/dist/
+**/dist-ssr/
+**/*.local
+**/.eslintcache
+**/tsconfig.tsbuildinfo
+
+# 本地配置（含数据库密码，不要提交）
+**/application-dev.yml
+**/application-prod.yml
+.env.local
+.env.*.local
+
+### Test ###
+**/src/test
+*.drawio
+.zcode

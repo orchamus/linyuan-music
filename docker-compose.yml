@@ -1,0 +1,31 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: linyuan-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: "123456"
+      MYSQL_DATABASE: linyuan_music
+      TZ: Asia/Shanghai
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_0900_ai_ci
+    ports:
+      - "3306:3306"
+    volumes:
+      - linyuan-mysql-data:/var/lib/mysql
+      # 首次启动自动建表并导入示例数据
+      - ./sql/linyuan_music.sql:/docker-entrypoint-initdb.d/01-linyuan_music.sql:ro
+
+  redis:
+    image: redis:7-alpine
+    container_name: linyuan-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - linyuan-redis-data:/data
+
+volumes:
+  linyuan-mysql-data:
+  linyuan-redis-data:

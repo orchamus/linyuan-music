@@ -1,0 +1,20 @@
+NOTICE
+
+林渊音乐 / LinYuan Music
+
+本项目是以下开源作品的二次开发版本：
+  Vibe Music by Alex-LiSun
+  Copyright (c) 2025 Alex-LiSun
+  https://github.com/Alex-LiSun
+
+在原作品基础上由 林渊（LinYuan）完成的重构与改造包括：
+  - 项目重命名、Java 包名重构（com.vibemusic -> com.linyuan.music）
+  - 移除 Spring AI 音乐助手模块
+  - 新增文件存储抽象：本地磁盘（默认）/ MinIO 双实现
+  - 本地图标内置、示例媒体数据与文档整理
+
+本项目以 MIT License 分发，完整许可文本见 LICENSE 文件。
+原作品同样以 MIT License 分发，原始版权声明予以保留。
+
+示例音频来自 SoundHelix（https://www.soundhelix.com/）免费示例曲目；
+封面、轮播图、头像等图片由本项目脚本生成，仅用于演示。
