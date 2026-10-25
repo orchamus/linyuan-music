@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* 纸感底色：暖米白 */
+    --theme-bg-color: 38 33% 96% / 100%;
+    --dm-background: 38 33% 96% / 96%;
+
+    --background: 38 33% 96%;
+    --foreground: 30 12% 12%;
+
+    --muted: 36 20% 93%;
+    --muted-foreground: 30 8% 45%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 30 12% 12%;
+
+    --card: #ffffff;
+    --card-foreground: 30 12% 12%;
+
+    --border: 36 15% 88%;
+    --input: 36 20% 93%;
+
+    --inactive: 30 8% 45%;
+
+    --heroui-default: 36 15% 88%;
+    --bg-content1: 0 0% 100%;
+
+    /* 菜单悬停：暖灰；选中：珊瑚橙红浅底（保留逗号格式，Table.vue 中以 hsl() 任意值引用） */
+    --hover-menu-bg: 36, 25%, 90%, 70%;
+    --active-menu-bg: 9, 100%, 59%, 12%;
+
+    /* 点缀色：珊瑚橙红 */
+    --primary: #ff4d2e;
+    --primary-foreground: 30 12% 12%;
+
+    --secondary: 36 20% 93%;
+    --secondary-foreground: 30 12% 12%;
+
+    --accent: 9 100% 96%;
+    --accent-foreground: 9 80% 40%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --ring: 9 100% 59%;
+
+    --radius: 0.625rem;
+  }
+
+  .dark {
+    --theme-bg-color: 222 25% 8% / 100%;
+    --dm-background: 222 25% 8% / 95%;
+
+    --background: 222 25% 8%;
+    --foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --popover: 222.2 47.4% 11.2%;
+    --popover-foreground: 210 40% 98%;
+
+    --inactive: 227 12% 50% / 78%;
+
+    --heroui-default: 240 5.26% 26.08%;
+    --bg-content1: 240 5.88% 10%;
+
+    --hover-menu-bg: 222, 36%, 80%, 30%;
+    --active-menu-bg: 9, 100%, 59%, 25%;
+
+    --card: rgb(146 151 179 / 13%);
+    --card-foreground: 210 40% 98%;
+
+    --border: 227 12% 50% / 25%;
+    --input: 217.2 32.6% 17.5%;
+
+    --primary: #ff4d2e;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --accent: 222 25% 18%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --ring: 9 100% 59%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
