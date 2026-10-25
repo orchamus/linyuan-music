@@ -114,6 +114,10 @@ linyuan-music/
 | --- | --- |
 | ![歌单](./docs/screenshots/client-playlist.png) | ![歌手](./docs/screenshots/client-artist.png) |
 
+| 个人中心 | 登录 |
+| --- | --- |
+| ![个人中心](./docs/screenshots/client-user.png) | ![登录](./docs/screenshots/client-login.png) |
+
 | 管理端看板 | 歌曲管理 |
 | --- | --- |
 | ![看板](./docs/screenshots/admin-dashboard.png) | ![歌曲管理](./docs/screenshots/admin-songs.png) |
