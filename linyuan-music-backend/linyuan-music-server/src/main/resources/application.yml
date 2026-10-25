@@ -1,0 +1,100 @@
+spring:
+  profiles:
+    # 激活的dev配置文件,可按需切换
+    active: dev
+
+  # 配置数据源
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    # 修改你的 MySQL 地址和库名
+    url: ${linyuan-music.datasource.url}
+    username: ${linyuan-music.datasource.username}
+    password: ${linyuan-music.datasource.password}
+    # 指定使用Druid数据源
+    type: com.alibaba.druid.pool.DruidDataSource
+
+  # Redis服务连接配置
+  data:
+    redis:
+      database: 1
+      host: ${linyuan-music.redis.host}
+      port: ${linyuan-music.redis.port}
+      password: ${linyuan-music.redis.password}
+
+  servlet:
+    multipart:
+      max-file-size: 100MB # 设置最大上传文件大小为100MB
+      max-request-size: 100MB # 设置最大请求大小为100MB
+
+  # 对于注解的Redis缓存数据统一设置有效期为10分钟，单位毫秒
+  cache:
+    redis:
+      time-to-live: 600000
+
+  # 配置邮件服务
+  mail:
+    host: ${linyuan-music.mail.host}
+    username: ${linyuan-music.mail.username}
+    password: ${linyuan-music.mail.password}
+    protocol: smtp
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+          ssl:
+            enable: true
+          socketFactory:
+            port: 465
+            class: javax.net.ssl.SSLSocketFactory
+          # 邮件服务超时时间配置
+          connectiontimeout: 5000
+          timeout: 3000
+          writetimeout: 5000
+
+# 配置 mybatis-plus
+mybatis-plus:
+  type-aliases-package: com.linyuan.music.model.entity # 实体类所在的包，允许用实体类类名作为别名
+
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 配置日志
+    map-underscore-to-camel-case: true # 类属性与表字段的驼峰映射
+
+  global-config:
+    db-config: # 数据库配置
+      table-prefix: tb_  # 表名前缀为tb_，表名为前缀连接类名（小写）
+
+# 定义角色和路径权限的映射关系
+role-path-permissions:
+  permissions:
+    ROLE_ADMIN:
+      - "/admin/"
+      - "/playlist-binding/"
+    ROLE_USER:
+      - "/user/"
+      - "/playlist/"
+      - "/artist/"
+      - "/song/"
+      - "/favorite/"
+      - "/comment/"
+      - "/banner/"
+      - "/feedback/"
+
+# 文件存储：local = 本地磁盘（默认，开箱即用）；minio = MinIO 对象存储
+linyuan-music:
+  storage:
+    type: ${STORAGE_TYPE:local}
+    # 本地存储根目录，相对路径以启动目录为准
+    local-dir: ${STORAGE_DIR:./uploads}
+    # 本地存储对外访问前缀，与 backend 服务的 static 映射一致
+    url-prefix: /files
+    # 返回给前端的文件访问地址前缀
+    public-base-url: ${STORAGE_PUBLIC_URL:http://localhost:8080/files}
+
+minio:
+  endpoint: ${linyuan-music.minio.endpoint:http://localhost:9000}
+  accessKey: ${linyuan-music.minio.accessKey:minioadmin}
+  secretKey: ${linyuan-music.minio.secretKey:minioadmin}
+  bucket: ${linyuan-music.minio.bucket:linyuan-music-data}
