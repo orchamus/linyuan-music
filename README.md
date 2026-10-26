@@ -64,6 +64,29 @@
 - **邮件服务**：注册 / 找回密码验证码
 - 参数校验（Jakarta Validation）、分页插件（MyBatis-Plus Page）、Druid 连接池
 
+### AI 能力（Spring AI + 通义千问）
+
+**AI 音乐助手（Agent）** —— `POST /agent/chat`（SSE 流式）
+
+- 基于 Spring AI `ChatClient` 接入通义千问（DashScope，OpenAI 兼容接口）
+- **Function Calling**：注册「按关键词搜歌 / 按风格推荐 / 热门歌曲」三类工具（`MusicAgentTools`），模型按需调用并查询真实曲库
+- **多轮会话**：`MessageChatMemoryAdvisor` + 滑动窗口记忆（20 条），会话 ID 隔离
+- **流式输出**：SSE 逐字返回，配合 `incrementalOutput` 避免整段回复
+
+**RAG 知识库问答** —— `POST /rag/ask`
+
+1. 曲库资料导出为文档，**Apache Tika** 解析 → **TokenTextSplitter** 切分
+2. **Embedding**（text-embedding-v3）向量化后写入 **SimpleVectorStore**
+3. 检索时 **Top-K 召回 + 相似度阈值过滤**，命中片段带 `[编号] 来源` 标注回填 Prompt
+4. 回答中标注引用来源，可追溯到具体歌手 / 歌曲资料
+
+> 需要配置阿里云百炼（DashScope）API Key 才能实际调用大模型：
+> ```bash
+> export DASHSCOPE_API_KEY=sk-xxxx      # Windows: set DASHSCOPE_API_KEY=sk-xxxx
+> ```
+> 未配置时接口不报 500，而是返回「AI 音乐助手未启用」的提示，不影响其它功能。
+> 索引重建：`POST /rag/rebuild`；状态查询：`GET /rag/status`。
+
 ## 技术栈
 
 | 层次 | 技术 |
@@ -72,6 +95,7 @@
 | 持久层 | MyBatis-Plus 3.5.9（分页、LambdaQuery）、Druid 1.2.24、MySQL 8 |
 | 缓存 / 会话 | Redis（Spring Data Redis / Lettuce）、Spring Cache |
 | 安全 | JWT（java-jwt 4.4）、路径级角色权限、参数校验 |
+| AI | Spring AI 1.1.2、Spring AI Alibaba（通义千问）、Function Calling、RAG、SimpleVectorStore、Apache Tika |
 | 文件存储 | 本地磁盘（默认）/ MinIO 8.5.9 |
 | 邮件 | Jakarta Mail（SMTP + SSL） |
 | 前端 | Vue 3.5、TypeScript、Vite 6、Pinia、Element Plus、Tailwind CSS、Artplayer |

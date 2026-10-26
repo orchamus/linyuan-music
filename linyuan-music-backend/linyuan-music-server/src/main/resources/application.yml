@@ -54,6 +54,17 @@ spring:
           timeout: 3000
           writetimeout: 5000
 
+  # Spring AI：通义千问（Chat / Embedding），未配置真实 Key 时接口返回友好提示
+  ai:
+    dashscope:
+      api-key: ${DASHSCOPE_API_KEY:sk-demo}
+      chat:
+        options:
+          model: qwen-plus
+      embedding:
+        options:
+          model: text-embedding-v3
+
 # 配置 mybatis-plus
 mybatis-plus:
   type-aliases-package: com.linyuan.music.model.entity # 实体类所在的包，允许用实体类类名作为别名
@@ -92,6 +103,14 @@ linyuan-music:
     url-prefix: /files
     # 返回给前端的文件访问地址前缀
     public-base-url: ${STORAGE_PUBLIC_URL:http://localhost:8080/files}
+  # AI 能力：AI 音乐助手（工具调用 + SSE）与 RAG 知识库问答
+  ai:
+    enabled: ${AI_ENABLED:true}
+    rag:
+      # 知识库文档目录（首次启动会用曲库数据生成）
+      knowledge-dir: ./uploads/knowledge
+      top-k: 5
+      similarity-threshold: 0.55
 
 minio:
   endpoint: ${linyuan-music.minio.endpoint:http://localhost:9000}
