@@ -64,6 +64,20 @@ spring:
       embedding:
         options:
           model: text-embedding-v3
+    # MCP Client：通过 stdio 拉起本地 MCP Server（mcp-server/index.js），把曲库查询注册为标准 MCP 工具
+    mcp:
+      client:
+        enabled: ${MCP_ENABLED:true}
+        name: linyuan-music-mcp-client
+        version: 1.0.0
+        type: SYNC
+        request-timeout: 30s
+        stdio:
+          connections:
+            music:
+              command: ${MCP_NODE:node}
+              args:
+                - ${MCP_SERVER_SCRIPT:./mcp-server/index.js}
 
 # 配置 mybatis-plus
 mybatis-plus:

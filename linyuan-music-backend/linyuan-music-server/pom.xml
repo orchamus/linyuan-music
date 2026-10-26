@@ -101,6 +101,12 @@
             <artifactId>spring-ai-tika-document-reader</artifactId>
         </dependency>
 
+        <!-- MCP Client：通过 stdio 接入本地 MCP Server，聚合其工具 -->
+        <dependency>
+            <groupId>org.springframework.ai</groupId>
+            <artifactId>spring-ai-starter-mcp-client</artifactId>
+        </dependency>
+
     </dependencies>
 
     <dependencyManagement>

@@ -1,0 +1,11 @@
+{
+  "name": "linyuan-music-mcp-server",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "林渊音乐 · 曲库 MCP Server（stdio），把曲库查询能力暴露为标准 MCP 工具",
+  "main": "index.js",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.17.0"
+  }
+}

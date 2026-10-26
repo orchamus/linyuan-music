@@ -87,6 +87,14 @@
 > 未配置时接口不报 500，而是返回「AI 音乐助手未启用」的提示，不影响其它功能。
 > 索引重建：`POST /rag/rebuild`；状态查询：`GET /rag/status`。
 
+**MCP 工具接入** —— `GET /agent/mcp/simple/chat`、`GET /agent/mcp/tools`
+
+- 独立进程 [`mcp-server/`](./linyuan-music-backend/mcp-server)：Node.js + `@modelcontextprotocol/sdk`，以 **stdio** 方式暴露三个标准 MCP 工具
+  - `search_songs`（按关键词搜歌）、`songs_by_artist`（按歌手查歌）、`hot_songs`（热门歌曲）
+- Spring AI **MCP Client** 在启动时通过 stdio 拉起该进程，把 MCP 工具聚合成 `ToolCallback` 交给模型调用
+- 启动日志可见：`MCP server started` → `MCP 工具已注册：[search_songs, songs_by_artist, hot_songs]`
+- 运行前提：本机安装 Node.js，首次使用先执行 `cd linyuan-music-backend/mcp-server && npm install`
+
 ## 技术栈
 
 | 层次 | 技术 |
