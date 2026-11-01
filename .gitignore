@@ -28,3 +28,6 @@ Thumbs.db
 **/src/test
 *.drawio
 .zcode
+
+# RAG 知识库文档由曲库自动生成，不纳入版本管理
+linyuan-music-backend/uploads/knowledge/
